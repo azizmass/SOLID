@@ -1,23 +1,20 @@
 @startuml
-
-class EncodingModule {
-  +encodeWithFiles()
-  +encodeBasedOnNetworkAndDatabase()
+package com.directi.training.dip.exercise {
+  class EncodingModule {
+    +encodeWithFiles()
+    +encodeBasedOnNetworkAndDatabase()
+  }
+  class EncodingModuleClient {
+    +main()
+  }
+  class MyDatabase {
+    +write()
+  }
+  EncodingModule --> FileReader
+  EncodingModule --> FileWriter
+  EncodingModule --> URL
+  EncodingModule --> InputStream
+  EncodingModule --> MyDatabase
+  EncodingModuleClient --> EncodingModule
 }
-
-class EncodingModuleClient {
-  +main()
-}
-
-class MyDatabase {
-  -{static} int _count
-  -{static} Map<String, String> _data
-  +write()
-}
-
-EncodingModuleClient ..> EncodingModule
-EncodingModule ..> MyDatabase
-
-
-
 @enduml

@@ -1,22 +1,20 @@
 @startuml
+package com.directi.training.ocp.exercise {
+  class ResourceAllocator {
+    - INVALID_RESOURCE_ID: int
+    + allocate(ResourceType): int
+    + free(ResourceType, int)
+    - markSpaceSlotFree(int)
+    - markTimeSlotFree(int)
+    - markSpaceSlotBusy(int)
+    - findFreeSpaceSlot(): int
+    - markTimeSlotBusy(int)
+    - findFreeTimeSlot(): int
+  }
 
-class ResourceAllocator {
-  -{static} int INVALID_RESOURCE_ID
-  + allocate()
-  + free()
-  - markSpaceSlotFree()
-  - markTimeSlotFree()
-  - markSpaceSlotBusy()
-  - markTimeSlotBusy()
-  - findFreeSpaceSlot()
-  - findFreeTimeSlot()
+  enum ResourceType {
+    TIME_SLOT
+    SPACE_SLOT
+  }
 }
-
-enum ResourceType {
-  SPACE
-  TIME
-}
-
-ResourceAllocator ..> ResourceType
-
 @enduml

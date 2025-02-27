@@ -1,7 +1,8 @@
 package com.directi.training.dip.exercise_refactor;
 
 import java.io.IOException;
+import java.util.List;
 
 public interface IReader {
-  String read() throws IOException;
+    List<String> read() throws IOException;
 }

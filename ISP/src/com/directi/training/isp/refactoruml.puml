@@ -1,47 +1,39 @@
 @startuml
-
-interface IDoor {
-    +void lock()
-    +void unlock()
-    +void open()
-    +void close()
+interface Door {
+    void lock()
+    void unlock()
+    void open()
+    void close()
 }
 
-interface ITimedDoor extends IDoor {
-    +void timeOutCallback()
+interface TimerClient {
+    void timeOutCallback()
 }
 
-interface ISensingDoor extends IDoor {
-    +void proximityCallback()
+interface ProximitySensorClient {
+    void proximityCallback()
 }
 
-class TimedDoor implements ITimedDoor {
-    -boolean _locked
-    -boolean _opened
-    -{static} final int TIMEOUT = 100
+class SensingDoor {
+    +SensingDoor(Sensor)
 }
 
-class SensingDoor implements ISensingDoor {
-    -boolean _locked
-    -boolean _opened
-}
-
-class Timer {
-    +void register(int timeout, Door door)
+class TimedDoor {
+    +TimedDoor(Timer)
 }
 
 class Sensor {
-    +void register(Door door)
+    +register(ProximitySensorClient)
 }
 
+class Timer {
+    +register(long, TimerClient)
+}
 
-ISensingDoor <.. Sensor
-ITimedDoor <.. Timer
-
-TimedDoor ..> Timer
-SensingDoor ..> Sensor
-
-
-
-
+SensingDoor .up.|> Door
+SensingDoor .up.|> ProximitySensorClient
+TimedDoor .up.|> Door
+TimedDoor .up.|> TimerClient
+Sensor --> ProximitySensorClient
+Timer --> TimerClient
 @enduml

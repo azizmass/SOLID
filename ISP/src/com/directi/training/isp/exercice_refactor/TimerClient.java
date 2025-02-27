@@ -1,6 +1,5 @@
 package com.directi.training.isp.exercice_refactor;
 
-public interface ITimedDoor extends IDoor {
-    
+public interface TimerClient {
     void timeOutCallback();
 }

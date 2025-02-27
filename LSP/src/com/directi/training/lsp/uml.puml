@@ -1,25 +1,23 @@
 @startuml
+package com.directi.training.lsp.exercise {
+    class Duck {
+        +quack()
+        +swim()
+    }
+    class ElectronicDuck {
+        -_on : boolean
+        +quack()
+        +swim()
+        +turnOn()
+        +turnOff()
+    }
+    Duck <|-- ElectronicDuck
 
-class Pool {
-  + void run()
-  + void quack()
-  + void swim()
+    class Pool {
+        +run()
+        -quack(duck: Duck[])
+        -swim(duck: Duck[])
+        +main(String[] args)
+    }
 }
-
-class Duck {
-  + void quack()
-  + void swim()
-}
-
-class ElectronicDuck extends Duck {
-  - boolean _on
-  + void quack()
-  + void swim()
-  + void turnOn()
-  + void turnOff()
-}
-
-Pool ..> Duck
-
-
 @enduml

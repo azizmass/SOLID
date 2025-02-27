@@ -1,27 +1,36 @@
 @startuml
+package com.directi.training.lsp.exercise {
+    interface IDuck {
+        +quack()
+        +swim()
+    }
+    
+    class NaturalDuck {
+        +quack()
+        +swim()
+    }
+    NaturalDuck ..|> IDuck
 
-class Pool {
-  + void run()
-  + void quack()
-  + void swim()
+    class ElectronicDuck {
+        -_on : boolean
+        +quack()
+        +swim()
+        +turnOn()
+        +turnOff()
+    }
+    
+    class ElectronicDuckAdapter {
+        -electronicDuck : ElectronicDuck
+        +quack()
+        +swim()
+    }
+    ElectronicDuckAdapter ..|> IDuck
+
+    class Pool {
+        +run()
+        -quack(ducks: IDuck[])
+        -swim(ducks: IDuck[])
+        +main(String[] args)
+    }
 }
-
-interface IDuck {
-  + void quack()
-  + void swim()
-}
-
-class Duck implements IDuck {
-}
-
-class ElectronicDuck implements IDuck {
-  - boolean _on
-  + void turnOn()
-  + void turnOff()
-}
-
-Pool ..> IDuck
-Pool ..> ElectronicDuck
-
-
 @enduml
